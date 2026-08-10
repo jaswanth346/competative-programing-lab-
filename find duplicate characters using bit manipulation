@@ -1,0 +1,35 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int seen = 0;      
+    int printed = 0;    
+    bool found = false;
+    for (char ch : s) {
+        int pos = ch - 'a';
+        int mask = 1 << pos;
+        if (seen & mask) {
+            if (!(printed & mask)) {
+                cout << ch << " ";
+                printed |= mask;
+                found = true;
+            }
+        } else {
+            seen |= mask;
+        }
+    }
+    if (!found) {
+        cout << "No duplicates";
+    }
+    return 0;
+}
