@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int cycleLength(long long n) {
+    int count = 1;
+    while (n != 1) {
+        if (n % 2 == 0) {
+            n = n / 2;
+        }
+        else {
+            n = 3 * n + 1;
+        }
+        count++;
+    }
+    return count;
+}
+int main() {
+    int i, j;
+    cin >> i >> j;
+    int originalI = i;
+    int originalJ = j;
+    if (i > j) {
+        int temp = i;
+        i = j;
+        j = temp;
+    }
+    int maxCycle = 0;
+    for (int n = i; n <= j; n++) {
+        int length = cycleLength(n);
+        if (length > maxCycle) {
+            maxCycle = length;
+        }
+    }
+    cout << originalI << " "
+         << originalJ << " "
+         << maxCycle;
+    return 0;
+}
